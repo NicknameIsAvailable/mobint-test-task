@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'SegoeUI';
+    font-weight: bold;
+    src: url('../shared/fonts/SegoeUIBold/SegoeUIBold.woff') format('woff'),
+    url('../shared/fonts/SegoeUIBold/SegoeUIBold.ttf') format('truetype'),
+    url('../shared/fonts/SegoeUIBold/SegoeUIBold.eot');
+}
+
+@font-face {
+    font-family: 'SegoeUI';
+    font-weight: normal;
+    src: url('../shared/fonts/SegoeUIRegular/SegoeUIRegular.woff') format('woff'),
+    url('../shared/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype'),
+    url('../shared/fonts/SegoeUIRegular/SegoeUIRegular.eot');
+}
