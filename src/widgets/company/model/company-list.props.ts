@@ -1,4 +1,4 @@
-export interface ITaskListProps {
+export interface ICompanyProps {
     offset?: number;
     limit?: number;
 }

@@ -1,9 +1,9 @@
-import {TaskList} from "@/widgets/task/ui/task-list.tsx";
+import {CompanyList} from "@/widgets/company";
 
 export const HomePage = () => {
     return (
         <div>
-            <TaskList />
+            <CompanyList />
         </div>
     );
 };
