@@ -11,14 +11,14 @@ export const CompanyCard: FC<ICompanyCardProps> = ({ data   }) => {
     return (
         <Card style={{background: mobileAppDashboard.cardBackgroundColor}}>
             <div className="flex justify-between py-4">
-                <h1>
+                <h1 className="text-2xl" style={{ color: mobileAppDashboard.highlightTextColor }}>
                     {mobileAppDashboard.companyName}
                 </h1>
-                <img src={mobileAppDashboard.logo} alt={company.companyId} className="h-8 w-8 rounded-full"/>
+                <img src={mobileAppDashboard.logo} alt={company.companyId} className="h-10 w-10 rounded-full"/>
             </div>
             <hr/>
             <h4>
-                <span>{customerMarkParameters.mark}</span> балла
+                <span className="text-2xl" style={{ color: mobileAppDashboard.highlightTextColor }}>{customerMarkParameters.mark}</span> балла
             </h4>
             <div className="flex justify-between py-4">
                 <div className="flex flex-col gap-1">
@@ -34,10 +34,10 @@ export const CompanyCard: FC<ICompanyCardProps> = ({ data   }) => {
             </div>
             <hr/>
             <div className="flex justify-between py-4">
-                <Button primary={false}>
+                <Button primary={false} style={{ background: mobileAppDashboard.accentColor }}>
                     <img className="h-4 w-4" src={EyeIcon} alt="Посмотреть"/>
                 </Button>
-                <DeleteModal />
+                <DeleteModal data={data}/>
                 <Button
                     style={{
                         background: mobileAppDashboard.accentColor,

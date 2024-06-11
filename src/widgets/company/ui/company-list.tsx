@@ -14,7 +14,7 @@ export const CompanyList: FC<ICompanyProps> = observer(({ offset, limit }) => {
     console.log(companies[0], status)
 
     return (
-        <div className="flex gap-4 flex-col">
+        <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 flex-col">
             {companies.map(company => <CompanyCard data={company} key={company.company.companyId} />)}
         </div>
     )
