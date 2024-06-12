@@ -17,3 +17,7 @@
     url('../shared/fonts/SegoeUIRegular/SegoeUIRegular.ttf') format('truetype'),
     url('../shared/fonts/SegoeUIRegular/SegoeUIRegular.eot');
 }
+
+body {
+    background: #EFEFEF;
+}

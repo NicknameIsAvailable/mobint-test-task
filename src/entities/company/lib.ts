@@ -1,29 +1,63 @@
-import {ICompany, TRequestStatus} from "@/shared/types";
 import { makeAutoObservable } from "mobx";
 import { companyApi } from "@/entities/company/api.ts";
-import {TCompanyStore} from "@/entities/company/model.ts";
+import { TCompanyStore } from "./model";
+import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
+import { ICompany } from "@/shared/types";
 
 class CompanyStore implements TCompanyStore {
-    companies: ICompany[] = [];
-    status: TRequestStatus = "pending";
+  companies?: IPromiseBasedObservable<ICompany[]>;
+  currentOffset: number = 0;
+  currentLimit: number = 5;
+  isLimitReached: boolean = false;
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    getCompanies = async (offset: number, limit: number): Promise<ICompany[]> => {
-        try {
-            this.status = "pending"
-            const data: ICompany[] = await companyApi.getCompanies(offset, limit);
-            this.companies = data;
-            this.status = "fulfilled"
-            return data;
-        } catch (error) {
-            console.error("Failed to fetch companies:", error);
-            this.status = "rejected"
-            return [];
-        }
+  getCompanies = (): IPromiseBasedObservable<ICompany[]> | undefined => {
+    try {
+      this.currentOffset = 0;
+      this.isLimitReached = false;
+      const data: IPromiseBasedObservable<ICompany[]> = fromPromise(
+        companyApi.getCompanies(this.currentOffset, this.currentLimit),
+      );
+      this.companies = data;
+      this.currentOffset += this.currentLimit;
+      return data;
+    } catch (error) {
+      console.error("Failed to fetch companies:", error);
     }
+  };
+
+  getMoreCompanies = async (): Promise<
+    IPromiseBasedObservable<ICompany[]> | undefined
+  > => {
+    try {
+      const newData: ICompany[] = await companyApi.getCompanies(
+        this.currentOffset,
+        this.currentLimit,
+      );
+
+      if (newData.length === 0) {
+        this.isLimitReached = true;
+        return this.companies;
+      }
+
+      const currentData: ICompany[] | undefined = await this.companies;
+      if (currentData) {
+        const mergedData: ICompany[] = currentData?.concat(newData);
+        this.companies = fromPromise(Promise.resolve(mergedData));
+        this.currentOffset += this.currentLimit;
+
+        return this.companies;
+      }
+
+      return newData;
+    } catch (error) {
+      console.error("Failed to fetch companies:", error);
+      this.getMoreCompanies();
+    }
+  };
 }
 
 export const companyStore = new CompanyStore();

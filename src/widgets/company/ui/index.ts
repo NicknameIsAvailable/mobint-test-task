@@ -1,2 +1,2 @@
-export * from "./company-card"
-export * from "./company-list"
+export * from "./company-card";
+export * from "./company-list";

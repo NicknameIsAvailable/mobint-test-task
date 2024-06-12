@@ -1,1 +1,1 @@
-export type TRequestStatus = "pending" | "fulfilled" | "rejected" | undefined
+export type TRequestStatus = "pending" | "fulfilled" | "rejected" | undefined;

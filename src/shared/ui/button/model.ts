@@ -1,6 +1,6 @@
-import {HTMLAttributes, ReactNode} from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
 export interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
-    children?: ReactNode;
-    primary?: boolean;
+  children?: ReactNode;
+  primary?: boolean;
 }

@@ -1,5 +1,5 @@
-import {ICompany} from "@/shared/types";
+import { ICompany } from "@/shared/types";
 
 export interface ICompanyCardProps {
-    data: ICompany;
+  data: ICompany;
 }

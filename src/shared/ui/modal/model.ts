@@ -1,8 +1,8 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export interface IModalProps {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-    children?: ReactNode;
-    title?: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  children?: ReactNode;
+  title?: string;
 }

@@ -1,2 +1,2 @@
-export * from "./ui.tsx"
-export * from "./model.ts"
+export * from "./ui.tsx";
+export * from "./model.ts";

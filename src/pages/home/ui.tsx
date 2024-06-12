@@ -1,9 +1,9 @@
-import {CompanyList} from "@/widgets/company";
+import { CompanyList } from "@/widgets/company";
 
 export const HomePage = () => {
-    return (
-        <div>
-            <CompanyList />
-        </div>
-    );
+  return (
+    <div>
+      <CompanyList />
+    </div>
+  );
 };
